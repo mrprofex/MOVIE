@@ -48,7 +48,52 @@ app.post("/signup", async()=>{
 
 // sign in route 
 
+// Unauthenticated Movie Route
+app.get("/movies", async (req, res) => {
+  try {
+    const movies = await api.movie.findMany();
 
+    return res.status(200).json({
+      success: true,
+      message: "Movie List",
+      data: movies,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+// POST Movie API (Unauthenticated)
+app.post("/movies", async (req, res) => {
+  try {
+    const { title, description, genre, releaseYear, poster, rating, userId } = req.body;
+
+    const movie = await prisma.movie.create({
+      data: {
+        title,
+        description,
+        genre,
+        releaseYear,
+        poster,
+        rating,
+        userId,
+      },
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Movie added successfully",
+      data: movie,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 
 app.listen(PORT , ()=>{
     console.log("Your server is running on:http://localhost:${PORT}")
