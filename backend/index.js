@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended : false }))
 // sign up  route
 app.post("/signup", async()=>{
     try {
-        const 
+        const {} = req.body;
     } catch (error) {
         console.error(error);
         return res.status(500).json({
