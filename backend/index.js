@@ -1,6 +1,7 @@
 const express = require("express");
-const api = require("./config/prisma")
 require("dotenv").config();
+const api = require("./config/prisma")
+
 
 const PORT = process.env.PORT || 4000 
 const app = express();
@@ -17,7 +18,7 @@ app.post("/signup", async()=>{
                 message : "Please provide all the details Name , email , Password"
             })
         }
-        const userExist = await api.user.findUnique({
+        const userExist = await api.user.findU({
             where : {
                 email ,
             }
