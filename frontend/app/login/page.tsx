@@ -27,6 +27,7 @@ function Page() {
         message: string;
         user: User;
       }>("/signin", { email, password });
+      console.log(data);
       if (!data?.token || !data?.user)
         throw new Error(data?.message || "Login failed");
       login(data.token, data.user);
@@ -90,7 +91,7 @@ function Page() {
           <button
             type="submit"
             disabled={loading}
-            className="mt-2 h-11 bg-accent text-[#0F1220] font-semibold rounded-md hover:brightness-110 disabled:opacity-60 transition"
+            className="mt-2 h-11 bg-accent dark:text-white text-[#0F1220] font-semibold rounded-md hover:brightness-110 disabled:opacity-60 transition"
           >
             {loading ? "Signing in..." : "Enter the Theatre"}
           </button>

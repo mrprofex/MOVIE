@@ -22,21 +22,17 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let cancelled = false;
-    api
-      .get<Movie[]>("/movies")
-      .then(({ data }) => {
-        if (!cancelled) setMovies(data);
-      })
-      .catch((err) => {
-        if (!cancelled) setError(err?.message || "Failed to load movies");
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false);
-      });
-    return () => {
-      cancelled = true;
+    const getMovie = async () => {
+      try {
+        const { data } = await api.get<Movie[]>("/movies");
+        setMovies(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Failed to load movies");
+      } finally {
+        setLoading(false);
+      }
     };
+    getMovie();
   }, []);
 
   return (
@@ -58,13 +54,13 @@ export default function Home() {
               </span>
               <Link
                 href="/dashboard"
-                className="border border-border-app text-white font-semibold px-4 py-2 rounded-md hover:bg-surface-2 transition"
+                className="border border-border-app text-black dark:text-white font-semibold px-4 py-2 rounded-md hover:bg-surface-2 transition"
               >
                 Dashboard
               </Link>
               <Link
                 href="/dashboard"
-                className="bg-accent text-[#0F1220] font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
+                className="bg-accent text-[#0F1220] dark:text-white font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
               >
                 + Add Movie
               </Link>
@@ -73,13 +69,13 @@ export default function Home() {
             <div className="flex gap-3">
               <Link
                 href="/login"
-                className="border border-border-app text-white font-semibold px-4 py-2 rounded-md hover:bg-surface-2 transition"
+                className="border border-border-app dark:text-white text-[#0F1220] font-semibold px-4 py-2 rounded-md hover:bg-surface-2 transition"
               >
                 Login
               </Link>
               <Link
                 href="/register"
-                className="bg-accent text-[#0F1220] font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
+                className="bg-accent text-[#0F1220] dark:text-white font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
               >
                 Register
               </Link>
@@ -87,33 +83,8 @@ export default function Home() {
           ))}
       </header>
 
-      {loading && (
-        <p className="text-center text-gray-400 py-16">Loading...</p>
-      )}
-      {error && (
-        <p className="text-center text-red-400 py-16">{error}</p>
-      )}
-
-      {!loading && !error && movies.length === 0 && (
-        <div className="text-center py-16 rounded-xl border border-border-app bg-surface">
-          <p className="text-gray-300 mb-4">The reel is empty.</p>
-          {user ? (
-            <Link
-              href="/dashboard"
-              className="inline-block bg-accent text-[#0F1220] font-semibold px-4 py-2 rounded-md hover:brightness-110 transition"
-            >
-              Add the first movie
-            </Link>
-          ) : (
-            <Link
-              href="/login"
-              className="inline-block text-accent hover:underline"
-            >
-              Sign in to add one
-            </Link>
-          )}
-        </div>
-      )}
+      {loading && <p className="text-center text-gray-400 py-16">Loading...</p>}
+      {error && <p className="text-center text-red-400 py-16">{error}</p>}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
         {movies.map((m) => (
