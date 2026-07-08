@@ -134,6 +134,7 @@ app.post("/movies", async (req, res) => {
   }
 });
 
+// hello every one 
 app.listen(PORT, () => {
   console.log("Your server is running on:http://localhost:${PORT}");
 });
