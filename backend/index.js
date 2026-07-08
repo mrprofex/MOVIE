@@ -31,42 +31,42 @@ function auth(req, res, next) {
 }
 
 // sign up  route
-app.post("/signup", async(req , res)=>{
-    try {
-        const {name , email , password} = req.body;
-        if(!name || !email || !password){
-            return res.status(400).json({
-                message : "Please provide all the details Name , email , Password"
-            })
-        }
-        const userExist = await api.user.findUnique({
-            where : {
-                email ,
-            }
-        })
-        if(userExist){
-            return res.status(400).json({
-                message : "Email is allready exist please add another email"
-            })
-        }
-        const haspass = await bcrypt.hash(password , 10)
-        const newuser = await api.user.create({
-            data : {
-                name , 
-                email, 
-                password : haspass
-            }
-        })
-        return res.status(201).json({
-            message : "User created successfully"
-        })
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            message : "Server Error"
-        })
+app.post("/signup", async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        message: "Please provide all the details Name , email , Password",
+      });
     }
-})
+    const userExist = await api.user.findUnique({
+      where: {
+        email,
+      },
+    });
+    if (userExist) {
+      return res.status(400).json({
+        message: "Email is allready exist please add another email",
+      });
+    }
+    const haspass = await bcrypt.hash(password, 10);
+    const newuser = await api.user.create({
+      data: {
+        name,
+        email,
+        password: haspass,
+      },
+    });
+    return res.status(201).json({
+      message: "User created successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+});
 
 // sign in route
 
@@ -99,6 +99,39 @@ app.post("/signin", async (req, res) => {
     message: "signed in successfully",
     token,
   });
+});
+
+app.get("/movies", async (req, res) => {
+  try {
+    const movies = await api.movie.findMany();
+    res.status(200).json(movies);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// POST Movie
+app.post("/movies", async (req, res) => {
+  try {
+    const { title, description, genre, releaseYear, poster, rating, userId } =
+      req.body;
+
+    const movie = await api.movie.create({
+      data: {
+        title,
+        description,
+        genre,
+        releaseYear,
+        poster,
+        rating,
+        userId,
+      },
+    });
+
+    res.status(201).json(movie);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 app.listen(PORT, () => {
