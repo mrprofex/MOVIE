@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function page() {
   return (
-    <div className="loginContainer h-screen bg-[#161b2dca]">
+    <div className="loginContainer bg-[#161b2dca] ">
         <div className="loginCard flex flex-col h-[80vh] w-[70vh] bg-[#171b2e] border-1 border-[#4c4c5169] rounded-[10px] flex justify-self-center  m-[1.5rem]">
             <div className="flex flex-col items-center justify-center mx-[2rem] my-[1.25rem]">
               <span className="text-[12px] text-[#906f33]">NEW MEMBER</span>

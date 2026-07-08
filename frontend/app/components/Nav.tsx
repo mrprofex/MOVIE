@@ -2,7 +2,7 @@ import Link from "next/link"
 
 function Nav() {
   return (
-    <nav className="bg-[#0F1220] text-white p-4 flex items-center justify-between">
+    <nav className="bg-[#0F1220] text-white p-4 flex items-center justify-between ">
       <div className="logo flex items-center ">
         <span className="h-[10px] w-[10px] block bg-[#C1443C] rounded-2xl "></span>
         <h1 className="text-2xl font-bold text-[#E8B04B] ml-3">REELLIST</h1>
