@@ -10,7 +10,7 @@ function Nav() {
 
       <div className="navbtns flex items-center gap-4">
         <Link href="/login"><button className="h-[2.5rem] w-[4.5rem] text-white border-1 border-[#272f54]  font-bold rounded">Login</button></Link>
-        <Link href="/register"><button className="h-[2.5rem] w-[6rem] bg-[#E8B04B] text-[#0F1220] border-1  font-bold rounded ">Register</button></Link>
+        <Link href="/register"><button className="h-[2.5rem] w-[6rem] bg-[#575757] text-[#0F1220] border-1  font-bold rounded ">Register</button></Link>
       </div>
 
     </nav>

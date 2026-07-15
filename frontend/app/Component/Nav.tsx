@@ -26,9 +26,12 @@ function Nav() {
 
   return (
     <nav className="flex flex-col gap-1">
-      <Link href="/" className={itemClass("/")}>
-        All Movies
+      <Link href="/" className={itemClass("/")} >
+      All Movies
       </Link>
+       
+        
+      
 
       {loading ? null : user ? (
         <>
@@ -36,10 +39,10 @@ function Nav() {
             Dashboard
           </Link>
           <div className="mt-6 pt-4 border-t border-border-app">
-            <p className="px-3 text-xs uppercase tracking-wide text-gray-500 mb-1">
+            <p className="px-3 text-xs uppercase tracking-wide text-black dark:text-white bg-gray-200 dark:bg-gray-700 mb-1">
               Signed in as
             </p>
-            <p className="px-3 text-sm text-white font-medium truncate">
+            <p className="px-3 text-sm text-pink-500 font-medium truncate">
               {user.name}
             </p>
             <button

@@ -51,13 +51,13 @@ function Page() {
     <div className="min-h-screen flex items-center justify-center bg-background p-6">
       <div className="w-full max-w-md bg-surface border border-border-strong rounded-xl p-8 shadow-2xl">
         <div className="text-center mb-8">
-          <p className="text-xs tracking-widest text-accent-dim uppercase">
+          <p className="text-xs tracking-widest text-accent-dim uppercase mb-1  dark:text-white">
             Admit One
           </p>
-          <h1 className="text-3xl font-extrabold text-white mt-2">
+          <h1 className="text-3xl font-extrabold text-black dark:text-white mt-2">
             WELCOME BACK
           </h1>
-          <p className="text-sm text-gray-400 mt-2">
+          <p className="text-sm text-black dark:text-white mt-2">
             Sign in to pick up where you left off.
           </p>
         </div>
@@ -75,7 +75,7 @@ function Page() {
             />
           </label>
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Password</span>
+            <span className="text-sm text-black dark:text-white">Password</span>
             <input
               type="password"
               required
@@ -97,7 +97,7 @@ function Page() {
           </button>
         </form>
 
-        <p className="text-sm text-gray-500 mt-6 text-center">
+        <p className="text-sm text-orange-400 mt-6 text-center">
           No account yet?{" "}
           <Link
             href="/register"

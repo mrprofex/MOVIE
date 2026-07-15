@@ -64,7 +64,7 @@ function Page() {
             />
           </label>
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Email</span>
+            <span className="text-sm text-black dark:text-white">Email</span>
             <input
               type="email"
               required
@@ -75,7 +75,7 @@ function Page() {
             />
           </label>
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Password</span>
+            <span className="text-sm text-black dark:text-white">Password</span>
             <input
               type="password"
               required

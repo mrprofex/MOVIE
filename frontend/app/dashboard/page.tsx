@@ -85,7 +85,7 @@ export default function DashboardPage() {
 
   if (authLoading || !user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background text-gray-400">
+      <div className="min-h-screen flex items-center justify-center bg-background text-black dark:text-white">
         Loading...
       </div>
     );
@@ -95,24 +95,24 @@ export default function DashboardPage() {
     "w-full bg-surface-2 border border-border-app rounded-md px-3 py-2 text-white placeholder:text-gray-500 focus:outline-none focus:border-accent transition";
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-8">
+    <div className="min-h-screen bg-background-2 text-foreground p-8">
       <header className="mb-8">
         <p className="text-xs tracking-widest text-accent-dim uppercase mb-1">
           Backstage
         </p>
-        <h1 className="text-3xl md:text-4xl font-extrabold">Dashboard</h1>
-        <p className="text-gray-400 mt-1">Welcome back, {user.name}.</p>
+        <h1 className="text-3xl md:text-4xl font-extrabold text-blue-950 dark:text-white">Dashboard</h1>
+        <p className="text-black  dark:text-white mt-1">Welcome back, {user.name}.</p>
       </header>
 
       <section className="mb-10 rounded-xl border border-border-strong bg-surface p-6 max-w-3xl">
         <h2 className="text-lg font-bold mb-1">Add a movie</h2>
-        <p className="text-sm text-gray-400 mb-5">
+        <p className="text-sm text-black dark:text-white mb-5">
           Fill in the details to add a new title to the collection.
         </p>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Title</span>
+            <span className="text-sm text-green-400  dark:text-white">Title</span>
             <input
               className={inputClass}
               placeholder="e.g. Inception"
@@ -123,7 +123,7 @@ export default function DashboardPage() {
           </label>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Description</span>
+            <span className="text-sm text-green-400 dark:text-white">Description</span>
             <textarea
               className={`${inputClass} min-h-[96px]`}
               placeholder="What's it about?"
@@ -135,7 +135,7 @@ export default function DashboardPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <label className="flex flex-col gap-1.5">
-              <span className="text-sm text-gray-400">Genre</span>
+              <span className="text-sm text-green-400 dark:text-white">Genre</span>
               <input
                 className={inputClass}
                 placeholder="e.g. Sci-Fi"
@@ -145,7 +145,7 @@ export default function DashboardPage() {
               />
             </label>
             <label className="flex flex-col gap-1.5">
-              <span className="text-sm text-gray-400">Release year</span>
+              <span className="text-sm text-green-400 dark:text-white">Release year</span>
               <input
                 className={inputClass}
                 type="number"
@@ -158,7 +158,7 @@ export default function DashboardPage() {
           </div>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Poster URL</span>
+            <span className="text-sm text-green-400 dark:text-white">Poster URL</span>
             <input
               className={inputClass}
               placeholder="https://..."
@@ -169,7 +169,7 @@ export default function DashboardPage() {
           </label>
 
           <label className="flex flex-col gap-1.5">
-            <span className="text-sm text-gray-400">Rating (optional)</span>
+            <span className="text-sm text-green-400 dark:text-white">Rating (optional)</span>
             <input
               className={inputClass}
               type="number"
@@ -182,14 +182,12 @@ export default function DashboardPage() {
             />
           </label>
 
-          {formError && (
-            <p className="text-sm text-red-400">{formError}</p>
-          )}
+          {formError && <p className="text-sm text-yellow-950 dark:text-white">{formError}</p>}
 
           <button
             type="submit"
             disabled={submitting}
-            className="mt-2 bg-accent text-[#0F1220] font-semibold py-2.5 rounded-md hover:brightness-110 disabled:opacity-60 transition"
+            className="mt-2 bg-accent text-[#411234] font-semibold py-2.5 rounded-md hover:brightness-110 disabled:opacity-60 transition dark:bg-black dark:text-white"
           >
             {submitting ? "Adding..." : "Add Movie"}
           </button>
@@ -200,14 +198,14 @@ export default function DashboardPage() {
         <div className="flex items-baseline justify-between mb-4">
           <h2 className="text-xl font-bold">Your movies</h2>
           {movies.length > 0 && (
-            <span className="text-sm text-gray-500">{movies.length} total</span>
+            <span className="text-sm text-pink-500">{movies.length} total</span>
           )}
         </div>
 
-        {listLoading && <p className="text-gray-400">Loading...</p>}
-        {listError && <p className="text-red-400">{listError}</p>}
+        {listLoading && <p className="text-blue-700 dark:text-white">Loading...</p>}
+        {listError && <p className="text-nevy to-blue-500 dark:text-white">{listError}</p>}
         {!listLoading && !listError && movies.length === 0 && (
-          <div className="rounded-xl border border-border-app bg-surface p-8 text-center text-gray-400">
+          <div className="rounded-xl border border-border-app bg-surface p-8 text-center text-orange-400 dark:text-white">
             You haven&apos;t added any movies yet.
           </div>
         )}
@@ -231,7 +229,7 @@ export default function DashboardPage() {
                 </h3>
                 <div className="flex items-center gap-3 text-sm text-gray-400 mt-1">
                   <span>{m.releaseYear}</span>
-                  <span className="w-1 h-1 rounded-full bg-gray-600" />
+                  <span className="w-1 h-1 rounded-full bg-blue-700" />
                   <span>{m.genre}</span>
                 </div>
                 {m.rating != null && (
